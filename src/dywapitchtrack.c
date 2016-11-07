@@ -180,7 +180,7 @@ double _dywapitch_computeWaveletPitch(double * samples, int startsample, int sam
 			si1 = sam[i-1] - theDC;
 			
 			if (si1 <= 0 && si > 0) {findMax = 1; findMin = 0; }
-			if (si1 >= 0 && si < 0) {findMin = 1; findMax = 1; }
+			if (si1 >= 0 && si < 0) {findMin = 1; findMax = 0; }
 			
 			// min or max ?
 			dv = si - si1;
