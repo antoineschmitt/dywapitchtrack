@@ -11,7 +11,7 @@ The dywapitchtrack is based on a custom-tailored algorithm which is of very high
 It can best be described as a dynamic wavelet algorithm (dywa):
 
 The heart of the algorithm is a very powerful wavelet algorithm, described in a paper by Eric Larson and Ross Maddox :
-"Real-Time Time-Domain Pitch Tracking Using Wavelets" http://online.physics.uiuc.edu/courses/phys498pom/NSF_REU_Reports/2005_reu/Real-Time_Time-Domain_Pitch_Tracking_Using_Wavelets.pdf
+"Real-Time Time-Domain Pitch Tracking Using Wavelets" https://www.researchgate.net/publication/242155298_REAL-TIME_TIME_DOMAIN_PITCH_TRACKING_USING_WAVELETS
 
 This central algorithm has been improved by adding dynamic tracking, to reduce the common problems of frequency-halving and voiced/unvoiced errors. This dynamic tracking explains the need for a tracking structure (dywapitchtracker). The dynamic tracking assumes that the main function dywapitch_computepitch is called repeatedly, as it follows the pitch over time and makes assumptions about human voice capabilities and reallife conditions (as documented inside the code).
 
@@ -20,7 +20,7 @@ Note : The algorithm currently assumes a 44100Hz audio sampling rate. If you use
 See the dywapitchtrack.h file for the library API documentation.
 
 History :
-This algorithm has been designed during a mission for a customer. As I had kept the author's rights on the source code, I eventually decided to make this code public and open source, because it is of really high quality. This algorithms has been extensibely tested, especially it has been included in an Adobe Director Xtra (plugin), asPitchDetect Xtra, that has been distributed widely for a few years.
+This algorithm has been designed during a mission for a customer. As I had kept the author's rights on the source code, I eventually decided to make this code public and open source, because it is of really high quality. This algorithms has been extensively tested, especially it has been included in an Adobe Director Xtra (plugin), asPitchDetect Xtra, that has been distributed widely for a few years.
 
 I hope that it can be used with pleasure and efficiency in your project.
 

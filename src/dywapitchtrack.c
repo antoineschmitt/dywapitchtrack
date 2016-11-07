@@ -41,6 +41,10 @@
 #define min(x, y) ((x) < (y)) ? (x) : (y)
 #endif
 
+#ifndef DBL_MAX
+#define DBL_MAX 1.79769e+308
+#endif
+
 // returns 1 if power of 2
 int _power2p(int value) {
 	if (value == 0) return 1;
@@ -131,8 +135,8 @@ double _dywapitch_computeWaveletPitch(double * samples, int startsample, int sam
 	
 	{ // compute ampltitudeThreshold and theDC
 		//first compute the DC and maxAMplitude
-		double maxValue = 0.0;
-		double minValue = 0.0;
+		double maxValue = -DBL_MAX;
+		double minValue = DBL_MAX;
 		for (i = 0; i < samplecount;i++) {
 			si = sam[i];
 			theDC = theDC + si;
@@ -171,12 +175,12 @@ double _dywapitch_computeWaveletPitch(double * samples, int startsample, int sam
 		int lastmaxIndex = -1000000;
 		int findMax = 0;
 		int findMin = 0;
-		for (i = 2; i < curSamNb; i++) {
+		for (i = 1; i < curSamNb; i++) {
 			si = sam[i] - theDC;
 			si1 = sam[i-1] - theDC;
 			
-			if (si1 <= 0 && si > 0) findMax = 1;
-			if (si1 >= 0 && si < 0) findMin = 1;
+			if (si1 <= 0 && si > 0) {findMax = 1; findMin = 0; }
+			if (si1 >= 0 && si < 0) {findMin = 1; findMax = 1; }
 			
 			// min or max ?
 			dv = si - si1;
@@ -185,10 +189,10 @@ double _dywapitch_computeWaveletPitch(double * samples, int startsample, int sam
 				
 				if (findMin && previousDV < 0 && dv >= 0) { 
 					// minimum
-					if (fabs(si) >= ampltitudeThreshold) {
-						if (i > lastMinIndex + delta) {
-							mins[nbMins++] = i;
-							lastMinIndex = i;
+					if (fabs(si1) >= ampltitudeThreshold) {
+						if (i - 1 > lastMinIndex + delta) {
+							mins[nbMins++] = i - 1;
+							lastMinIndex = i - 1;
 							findMin = 0;
 							//if DEBUGG then put "min ok"&&si
 							//
@@ -204,10 +208,10 @@ double _dywapitch_computeWaveletPitch(double * samples, int startsample, int sam
 				
 				if (findMax && previousDV > 0 && dv <= 0) {
 					// maximum
-					if (fabs(si) >= ampltitudeThreshold) {
-						if (i > lastmaxIndex + delta) {
-							maxs[nbMaxs++] = i;
-							lastmaxIndex = i;
+					if (fabs(si1) >= ampltitudeThreshold) {
+						if (i -1 > lastmaxIndex + delta) {
+							maxs[nbMaxs++] = i - 1;
+							lastmaxIndex = i - 1;
 							findMax = 0;
 						} else {
 							//if DEBUGG then put "max too close to previous"&&(i - lastmaxIndex)

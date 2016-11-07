@@ -11,7 +11,7 @@ See the dywapitchtrack.h file for the library API documentation.
 -- Version history
 
 Inital release : Antoine Schmitt April 2010
-
+v2 : Antoine Schmitt Nov2016, following fine-tuning remarks by Robin Carduner
 
 -- Building, Installing
 
