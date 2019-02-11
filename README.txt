@@ -1,6 +1,8 @@
 dywapitchtrack
 Dynamic Wavelet Algorithm Pitch Tracking C library
 
+Antoine Schmitt 2010
+
 The dywapitchtrack library computes the pitch of an audio stream in real time.
 The pitch is the main frequency of the waveform (the ‘note’ being played or sung).
 It is expressed as a float in Hz.
@@ -52,7 +54,7 @@ Antoine Schmitt April 2010
 -- Documentation
 
 See the dywapitchtrack.h file for the library API documentation.
-
+More information : http://schmittmachine.com/dywapitchtrack/
 
 -- Version history
 
